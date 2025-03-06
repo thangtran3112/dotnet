@@ -31,6 +31,9 @@ namespace API.Controllers
                 return BadRequest();
             }
 
+            // Force the Id to be 0 so EF Core knows it's a new entity
+            product.Id = 0;
+
             await _context.Products.AddAsync(product); // the change is in memory, but not yet persisted to the database
             await _context.SaveChangesAsync();  // save the changes to the database
 
@@ -62,6 +65,21 @@ namespace API.Controllers
             _context.Entry(product).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product is null)
+            {
+                return NotFound();
+            }
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            return Ok(product);
         }
     }
 }
