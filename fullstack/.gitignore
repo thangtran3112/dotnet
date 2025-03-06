@@ -65,3 +65,4 @@ coverage*.info
 # Misc
 .DS_Store
 Thumbs.db
+.fake
