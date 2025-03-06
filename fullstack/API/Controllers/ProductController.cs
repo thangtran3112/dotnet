@@ -36,6 +36,33 @@ namespace API.Controllers
 
             return Ok(product);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProduct(int id)
+        {
+            // AsNoTracking() is used to avoid tracking the entity in memory by entity framework
+            var product = await _context.Products.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+
+            if (product is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, Product product)
+        {
+            if (id != product.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(product).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }
 
