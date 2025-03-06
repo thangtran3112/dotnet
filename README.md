@@ -1,2 +1,0 @@
-# dotnet
-Dotnet mini projects
