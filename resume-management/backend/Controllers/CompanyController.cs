@@ -20,7 +20,6 @@ namespace backend.Controllers
             _mapper = mapper;
         }
 
-
         // CRUD
 
         // Create
