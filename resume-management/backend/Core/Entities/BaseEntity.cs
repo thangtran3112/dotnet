@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace backend.Core.Entities
 {
@@ -15,6 +11,7 @@ namespace backend.Core.Entities
 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
+        // MsSql Server does not have native support for boolean, the entity framework will convert it to bit (1/0)
         public bool IsActive { get; set; } = true;
     }
 }
