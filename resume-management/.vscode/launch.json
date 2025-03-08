@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": ".NET Resume Management API",
+          "type": "coreclr",
+          "request": "launch",
+          "preLaunchTask": "build",
+          "program": "${workspaceFolder}/backend/bin/Debug/net7.0/backend.dll",
+          "args": [],
+          "cwd": "${workspaceFolder}/backend",
+          "stopAtEntry": false,
+          "serverReadyAction": {
+              "action": "openExternally",
+              "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+              "uriFormat": "%s/swagger"
+          },
+          "env": {
+              "ASPNETCORE_ENVIRONMENT": "Development"
+          },
+          "sourceFileMap": {
+              "/Views": "${workspaceFolder}/Views"
+          }
+      },
+      {
+          "name": ".NET Core Attach",
+          "type": "coreclr",
+          "request": "attach"
+      },
+      {
+          "name": ".NET Core Watch",
+          "type": "coreclr",
+          "request": "launch",
+          "preLaunchTask": "watch",
+          "program": "${workspaceFolder}/backend/bin/Debug/net7.0/backend.dll",
+          "args": [],
+          "cwd": "${workspaceFolder}/backend",
+          "stopAtEntry": false,
+          "serverReadyAction": {
+              "action": "openExternally",
+              "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+              "uriFormat": "%s/swagger"
+          },
+          "env": {
+              "ASPNETCORE_ENVIRONMENT": "Development"
+          }
+      }
+  ]
+}
