@@ -24,6 +24,13 @@
 * To rollback to a previous migration: `dotnet ef database update <PreviousMigrationName>`
 * To undo all migrations: `dotnet ef database update 0`
 
+* Second migration, because of JobLevel and companySize was intially `int` (enum) and now we want string representation of enum
+
+```zsh
+  dotnet ef migrations add update-enum-to-string
+  dotnet ef database update update-enum-to-string
+```
+
 ## Cleanup nuget ##
 
 ```zsh
