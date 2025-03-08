@@ -12,6 +12,7 @@ namespace backend.Core.AutoMapperConfig
         {
             // CreateMap<Source, Destination>();
             CreateMap<CompanyCreateDTO, Company>();
+            CreateMap<Company, CompanyGetDto>();
         }
     }
 
