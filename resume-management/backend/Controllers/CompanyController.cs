@@ -44,5 +44,18 @@ namespace backend.Controllers
             return Ok(convertedCompanies);
         }
 
+        // Read (Get Company by ID)
+        [HttpGet]
+        [Route("get/{id}")]
+        public async Task<ActionResult<CompanyGetDto>> GetCompanyById(long id)
+        {
+            var company = await _context.Companies.FindAsync(id);
+            if (company == null)
+            {
+                return NotFound("Company not found");
+            }
+            var convertedCompany = _mapper.Map<CompanyGetDto>(company);
+            return Ok(convertedCompany);
+        }
     }
 }
