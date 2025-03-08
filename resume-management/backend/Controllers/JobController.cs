@@ -7,6 +7,7 @@ using backend.Core.Context;
 using backend.Core.Dtos.Job;
 using backend.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -32,6 +33,15 @@ namespace backend.Controllers
             await _context.Jobs.AddAsync(newJob);
             await _context.SaveChangesAsync();
             return Ok("Job created successfully");
+        }
+
+        [HttpGet]
+        [Route("get")]
+        public async Task<ActionResult<IEnumerable<JobGetDto>>> GetJobs()
+        {
+            var jobs = await _context.Jobs.Include(job => job.Company).ToListAsync();
+            var convertedJobs = _mapper.Map<IEnumerable<JobGetDto>>(jobs);
+            return Ok(convertedJobs);
         }
     }
 }
